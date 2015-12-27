@@ -274,6 +274,9 @@ class QtReactor(posixbase.PosixReactorBase):
             self._blockApp = QtCore.QEventLoop()
         self.runReturn()
         self._blockApp.exec_()
+        if self.running:
+            self.stop()
+            self.runUntilCurrent()
 
 
 class QtEventReactor(QtReactor):
